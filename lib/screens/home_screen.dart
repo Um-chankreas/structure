@@ -7,6 +7,8 @@ import 'package:sample_project/app/components/show_message/app_dialog.dart';
 import 'package:sample_project/app/components/show_message/toast.dart';
 import 'package:sample_project/app/enum/button_type.dart';
 import 'package:sample_project/app/enum/status_msg.dart';
+import 'package:sample_project/app/routes/app_route.dart';
+import 'package:sample_project/app/routes/app_router.dart';
 import 'package:sample_project/app/utils/app_log.dart';
 import 'package:sample_project/main.dart';
 import 'package:sample_project/provider/theme_provider.dart';
@@ -178,8 +180,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             context, "Success message", ResponseMsg.success);
                       },
                     ),
-                    const Gap(8),
                   ],
+                ),
+                const Gap(8),
+                const Gap(8),
+                Text("Go Router".tr,
+                    style: Theme.of(context).textTheme.titleMedium),
+                CustomButton(
+                  text: "Login Screen".tr,
+                  isExpanded: true,
+                  onPressed: () =>
+                      AppRouter.router.pushNamed(AppRoute.login.name),
                 )
               ],
             ),

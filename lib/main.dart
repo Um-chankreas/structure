@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_project/app/localization/translations.dart';
+import 'package:sample_project/app/routes/app_router.dart';
 import 'package:sample_project/app/themes/app_theme.dart';
 import 'package:sample_project/provider/provider_scope.dart';
 import 'package:sample_project/provider/theme_provider.dart';
-import 'package:sample_project/screens/home_screen.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 String localize = "Kh";
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
-    return GetMaterialApp(
+    return GetMaterialApp.router(
+      routeInformationParser: AppRouter.router.routeInformationParser,
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      routerDelegate: AppRouter.router.routerDelegate,
       title: 'My App',
       theme: AppTheme.getLightTheme(),
       darkTheme: AppTheme.getDarkTheme(),
@@ -38,7 +42,6 @@ class MyApp extends StatelessWidget {
           : LocalizationService.locale,
       translations: LocalizationService(),
       themeMode: themeProvider.themeMode, // system | light | dark
-      home: const HomeScreen(),
     );
   }
 }
