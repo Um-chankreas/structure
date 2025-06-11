@@ -31,6 +31,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       inputFormatters: inputFormaters,
+      style: Theme.of(context).textTheme.bodyMedium,
       onTap: onTap,
       readOnly: readOnly,
       decoration: InputDecoration(

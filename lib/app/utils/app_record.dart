@@ -1,12 +1,12 @@
 import 'package:sample_project/app/enum/status_msg.dart';
 
 class AppRecord<T> {
-  final LadingStatus status;
+  final LoadingStatus status;
   final String message;
   final String nextPageUrl;
   final T data;
   const AppRecord._({
-    this.status = LadingStatus.loading,
+    this.status = LoadingStatus.loading,
     this.message = "",
     this.nextPageUrl = "",
     required this.data,
@@ -15,8 +15,9 @@ class AppRecord<T> {
   factory AppRecord.success(T data,
       [String message = 'Success', String nextPageUrl = ""]) {
     return AppRecord._(
-      status:
-          nextPageUrl.isEmpty ? LadingStatus.noloadmore : LadingStatus.success,
+      status: nextPageUrl.isEmpty
+          ? LoadingStatus.noloadmore
+          : LoadingStatus.success,
       data: data,
       message: message,
     );
@@ -30,8 +31,9 @@ class AppRecord<T> {
   }) {
     final List<T> combined = [...currentData, ...newData];
     return AppRecord._(
-      status:
-          nextPageUrl.isEmpty ? LadingStatus.noloadmore : LadingStatus.success,
+      status: nextPageUrl.isEmpty
+          ? LoadingStatus.noloadmore
+          : LoadingStatus.success,
       data: combined as T,
       nextPageUrl: nextPageUrl,
       message: message,
@@ -42,7 +44,7 @@ class AppRecord<T> {
     String message = 'Loading...',
   }) {
     return AppRecord._(
-      status: LadingStatus.loading,
+      status: LoadingStatus.loading,
       data: defaultData,
       message: message,
     );
@@ -53,7 +55,7 @@ class AppRecord<T> {
     String message = 'Error',
   }) {
     return AppRecord._(
-      status: LadingStatus.failed,
+      status: LoadingStatus.failed,
       data: defaultData,
       message: message,
     );
@@ -64,15 +66,15 @@ class AppRecord<T> {
     String message = 'Error',
   }) {
     return AppRecord._(
-      status: LadingStatus.warning,
+      status: LoadingStatus.warning,
       data: defaultData,
       message: message,
     );
   }
-  bool get isSuccess => status == LadingStatus.success;
-  bool get isNoLoadMore => status == LadingStatus.noloadmore;
-  bool get isLoading => status == LadingStatus.loading;
-  bool get isLoadingMore => status == LadingStatus.loadmore;
-  bool get isError => status == LadingStatus.failed;
-  bool get isWarning => status == LadingStatus.warning;
+  bool get isSuccess => status == LoadingStatus.success;
+  bool get isNoLoadMore => status == LoadingStatus.noloadmore;
+  bool get isLoading => status == LoadingStatus.loading;
+  bool get isLoadingMore => status == LoadingStatus.loadmore;
+  bool get isError => status == LoadingStatus.failed;
+  bool get isWarning => status == LoadingStatus.warning;
 }

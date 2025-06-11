@@ -4,4 +4,4 @@ enum ResponseMsg {
   failed,
 }
 
-enum LadingStatus { loading, success, warning, failed, loadmore, noloadmore }
+enum LoadingStatus { loading, success, warning, failed, loadmore, noloadmore }
